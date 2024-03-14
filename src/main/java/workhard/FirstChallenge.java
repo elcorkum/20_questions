@@ -83,12 +83,60 @@ public class FirstChallenge {
         return isContained;
     }
 
+    //Question 11
+    public static int getIndexByElement(String[] names, String element) {
+        int index = -1;
+        for (int i = 0; i < names.length; i++) {
+            if (names[i] == element) {
+                index = i;
+            }
+        }
+        return index;
+
+    }
+    //Question 12
+    public static void printOddNumbersInRange(int start, int end){
+        for (int i = start; i <= end; i++ ) {
+            if(i % 2 == 0) {
+                System.out.println(i);
+            }
+        }
+
+    }
+
+    //Question 13
+    public static String printGivenStringTimesNumberGiven(String str, int n) {
+        String message = "";
+        for (int i = n; i > 0; i--) {
+            message += str;
+        }
+        return message;
+    }
+
+    //Question 14
+    public static String repeatFirstThreeLetters(String str, int n) {
+        String repeatedWord = "";
+        String newWord = str.substring(0, 3);
+        for (int i = n; i > 0; i--) {
+            repeatedWord += newWord;
+        }
+
+        return repeatedWord;
+    }
+
+    //Question 15
+    public static int wordsInAStringCounter(String str){
+        int wordCount = str.split("\\s").length;
+        return wordCount;
+    }
+
 
 
     public static void main(String[] args) {
 
         String[] food = {"mango", "broccoli", "juice", "berrie", "pasta alfredo", "pie"};
         int[] nums = {20, 5, 8, 12, 15, 67, 24, 17};
+        String randomWord = "blahblah";
 
         //Answer 1
         int lastIndex = getLastIndex(food);
@@ -129,6 +177,22 @@ public class FirstChallenge {
         //Answer 10
         boolean wordCheck = contains(food, "mango");
         System.out.println(wordCheck);
+
+        //Answer 11
+        int indexOfElement = getIndexByElement(food, "pie");
+        System.out.println(indexOfElement);
+
+        //Answer 12
+        printOddNumbersInRange(7, 18);
+
+        //Answer 13
+        System.out.println(printGivenStringTimesNumberGiven(randomWord, 3));
+
+        //Answer 14
+        System.out.println(repeatFirstThreeLetters(randomWord, 2));
+
+        //Answer 15
+        System.out.println(wordsInAStringCounter(randomWord));
 
 
 
