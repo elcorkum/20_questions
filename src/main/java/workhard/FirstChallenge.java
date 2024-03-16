@@ -1,30 +1,37 @@
 package workhard;
 
+import java.util.Arrays;
+
 public class FirstChallenge {
     //Loops, Control Flow, Arrays and Methods
 
     //Question 1
     public static int getLastIndex(String [] names) {
+
         return names.length - 1;
     }
 
     //Question 2
     public static int getSecondToLastIndex(String[] names) {
+
         return names.length -2;
     }
 
     //Question 3
     public static String getFirstElement(String[] names) {
+
         return  names[0];
     }
 
     //Question 4
     public static String getLastElement(String[] names) {
+
         return names[names.length - 1];
     }
 
     //Question 5
     public static String getSecondToLastElement(String[] names) {
+
         return names[names.length - 2];
     }
 
@@ -87,7 +94,7 @@ public class FirstChallenge {
     public static int getIndexByElement(String[] names, String element) {
         int index = -1;
         for (int i = 0; i < names.length; i++) {
-            if (names[i] == element) {
+            if (names[i].equals(element)) {
                 index = i;
             }
         }
@@ -97,8 +104,8 @@ public class FirstChallenge {
     //Question 12
     public static void printOddNumbersInRange(int start, int end){
         for (int i = start; i <= end; i++ ) {
-            if(i % 2 == 0) {
-                System.out.println(i);
+            if(i % 2 != 0) {
+                System.out.print(i + "\t");
             }
         }
 
@@ -131,12 +138,75 @@ public class FirstChallenge {
     }
 
 
+    //Question 16
+    public static int countVowels(String str){
+        int count = 0;
+        String lowerCaseWord = str.toLowerCase();
+       for (int i = 0; i < str.length(); i++) {
+           if (lowerCaseWord.charAt(i) == 'a' || lowerCaseWord.charAt(i) == 'e' || lowerCaseWord.charAt(i) == 'i' || lowerCaseWord.charAt(i) == 'o' || lowerCaseWord.charAt(i) == 'u' || lowerCaseWord.charAt(i) == 'y') {
+               count++;
+           }
+       }
+       return count;
+    }
+
+
+    //Question 17
+    public static String[] swapFirstLastElements(String[] stringArray) {
+        String temporaryElement = stringArray[0];
+        stringArray[0] = stringArray[stringArray.length -1];
+        stringArray[stringArray.length -1] = temporaryElement;
+        return stringArray;
+    }
+
+
+    //Question 18
+    public static String replaceCharacters(String str) {
+        String lowerCaseString = str.toLowerCase();
+        String result = lowerCaseString.replaceAll("f", "7").replaceAll("s", "&").replaceAll("1", "!").replaceAll("a", "@");
+
+        return result;
+    }
+
+
+
+    //Question 19
+    public static String replaceWuTangTwoThreeDivisible(String stringInput) {
+        String[] stringArray = stringInput.split(" ");
+
+        for (int x = 0; x < stringArray.length; x++) {
+            int elementPosition = x + 1;
+            if (elementPosition % 2 == 0) {
+                stringArray[x] = "Wu";
+            } else if (elementPosition % 3 == 0) {
+                stringArray[x] = "Tang";
+            }
+        }
+        stringInput = Arrays.toString(stringArray);
+        return stringInput;
+    }
+
+
+    //Question 20
+    public static String createStringOfFibonnaciUpToMax(int maxnumber) {
+        int[] numbers = new int[maxnumber];
+        numbers[0] = 0;
+        numbers[1] = 1;
+        for (int i = 2; i < maxnumber; i++) {
+            numbers[i] = numbers[i -1] + numbers[i-2];
+        }
+
+        return Arrays.toString(numbers);
+    }
+
+
+
 
     public static void main(String[] args) {
 
         String[] food = {"mango", "broccoli", "juice", "berrie", "pasta alfredo", "pie"};
         int[] nums = {20, 5, 8, 12, 15, 67, 24, 17};
-        String randomWord = "blahblah";
+        String randomWord = "The quick brown fox jumps over the lazy dog";
 
         //Answer 1
         int lastIndex = getLastIndex(food);
@@ -193,6 +263,27 @@ public class FirstChallenge {
 
         //Answer 15
         System.out.println(wordsInAStringCounter(randomWord));
+
+        //Answer 16
+        int numberOfVowels = countVowels("Eugene");
+        System.out.println(numberOfVowels);
+
+        //Answer 17
+        String[] swappedArray = swapFirstLastElements(food);
+        System.out.println(Arrays.toString(swappedArray));
+
+
+        //Answers 18
+        String newString = replaceCharacters("The Farmer went to the store to get 1 dollar's worth of fertilizer");
+        System.out.println(newString);
+
+        //Answer 19
+        String wordPlay = replaceWuTangTwoThreeDivisible(randomWord);
+        System.out.println(wordPlay);
+
+        //Answer 20
+        String fibonacciNumbers = createStringOfFibonnaciUpToMax(10);
+        System.out.println(fibonacciNumbers);
 
 
 
