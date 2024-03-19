@@ -1,6 +1,8 @@
 package workhard;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class FirstChallenge {
     //Loops, Control Flow, Arrays and Methods
@@ -57,33 +59,76 @@ public class FirstChallenge {
 
     //Question 8
     public static String extractAllOddNumbers(int[] numbers) {
-        String message = "";
-        for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] % 2 != 0){
-                message = "These are the odd numbers.";
-                System.out.print(numbers[i] + "\t");
+        String oddNumbers = "";
 
+        List<Integer> odds = new ArrayList<Integer>();
+
+        for (int i = 0; i<numbers.length; i++) {
+            if (numbers[i] % 2 != 0) {
+                odds.add(numbers[i]);
             }
         }
-        return message;
+        oddNumbers = odds.toString();
+        return oddNumbers;
+    }
+
+
+
+    //Question 8b OddNumbers
+    public static int[] getAllOddNumbers(int[] numbers) {
+        List<Integer> oddNumbers = new ArrayList<Integer>();
+
+        for (int i = 0; i<numbers.length; i++) {
+            if (numbers[i] % 2 != 0) {
+                oddNumbers.add(numbers[i]);
+            }
+        }
+        int z = oddNumbers.size();
+        int[] allOddNumbers = new int[z];
+        for(int x = 0; x < z; x++){
+            allOddNumbers[x] = oddNumbers.get(x);
+        }
+
+        return allOddNumbers;
     }
 
     //Question 9
     public static String extractAllEvenNumbers(int[] numbers) {
-       String message = "";
+       String evenNumbers = "";
+       List<Integer> evenNums = new ArrayList<Integer>();
         for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] % 2 == 0) {
-                message = "These are the even numbers.";
-                System.out.print(numbers[i] + "\t");
+                evenNums.add(numbers[i]);
             }
         }
-        return message;
+        evenNumbers = evenNums.toString();
+        return evenNumbers;
     }
+
+
+    //Question 9b EvenNumbers
+    public static int[] getAllEvenNumbers(int[] numbers) {
+        List<Integer> evenNumbers = new ArrayList<Integer>();
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                evenNumbers.add(numbers[i]);
+            }
+        }
+        int x = evenNumbers.size();
+        int[] allEvenNumbers = new int[x];
+        for (int y =0; y < x; y++){
+            allEvenNumbers[y] = evenNumbers.get(y);
+        }
+        return allEvenNumbers;
+    }
+
+
+
     //Question 10
     public static boolean contains(String[] names, String element) {
         boolean isContained = false;
         for (int i =  0; i < names.length; i++) {
-            if (names[i] == element) {
+            if (names[i].equals(element)) {
                 isContained = true;
             }
         }
@@ -103,12 +148,13 @@ public class FirstChallenge {
     }
     //Question 12
     public static void printOddNumbersInRange(int start, int end){
+        List<Integer> oddNumbers = new ArrayList<Integer>();
         for (int i = start; i <= end; i++ ) {
             if(i % 2 != 0) {
-                System.out.print(i + "\t");
+               oddNumbers.add(i);
             }
         }
-
+        System.out.println(oddNumbers.toString());
     }
 
     //Question 13
@@ -133,7 +179,7 @@ public class FirstChallenge {
 
     //Question 15
     public static int wordsInAStringCounter(String str){
-        int wordCount = str.split("\\s").length;
+        int wordCount = str.split("\\s+").length;
         return wordCount;
     }
 
@@ -143,7 +189,7 @@ public class FirstChallenge {
         int count = 0;
         String lowerCaseWord = str.toLowerCase();
        for (int i = 0; i < str.length(); i++) {
-           if (lowerCaseWord.charAt(i) == 'a' || lowerCaseWord.charAt(i) == 'e' || lowerCaseWord.charAt(i) == 'i' || lowerCaseWord.charAt(i) == 'o' || lowerCaseWord.charAt(i) == 'u' || lowerCaseWord.charAt(i) == 'y') {
+           if (lowerCaseWord.charAt(i) == 'a' || lowerCaseWord.charAt(i) == 'e' || lowerCaseWord.charAt(i) == 'i' || lowerCaseWord.charAt(i) == 'o' || lowerCaseWord.charAt(i) == 'u') {
                count++;
            }
        }
@@ -163,7 +209,7 @@ public class FirstChallenge {
     //Question 18
     public static String replaceCharacters(String str) {
         String lowerCaseString = str.toLowerCase();
-        String result = lowerCaseString.replaceAll("f", "7").replaceAll("s", "&").replaceAll("1", "!").replaceAll("a", "@");
+        String result = lowerCaseString.replaceAll("f", "7").replaceAll("s", "\\$").replaceAll("1", "!").replaceAll("a", "@");
 
         return result;
     }
@@ -205,7 +251,7 @@ public class FirstChallenge {
     public static void main(String[] args) {
 
         String[] food = {"mango", "broccoli", "juice", "berrie", "pasta alfredo", "pie"};
-        int[] nums = {20, 5, 8, 12, 15, 67, 24, 17};
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         String randomWord = "The quick brown fox jumps over the lazy dog";
 
         //Answer 1
@@ -240,9 +286,20 @@ public class FirstChallenge {
         String oddNumbers = extractAllOddNumbers(nums);
         System.out.println(oddNumbers);
 
+
+        int[] coolNumbers = {1, 2, 3, 6, 8, 10, 11, 19, 23, 4, 13};
+
+        //Answer 8b
+        int[] oddNumberList = getAllOddNumbers(coolNumbers);
+        System.out.println(Arrays.toString(oddNumberList));
+
+
         //Answer 9
         String evenNumbers = extractAllEvenNumbers(nums);
         System.out.println(evenNumbers);
+
+        //Answer 9b
+        System.out.println(Arrays.toString(getAllEvenNumbers(coolNumbers)));
 
         //Answer 10
         boolean wordCheck = contains(food, "mango");
@@ -259,13 +316,13 @@ public class FirstChallenge {
         System.out.println(printGivenStringTimesNumberGiven(randomWord, 3));
 
         //Answer 14
-        System.out.println(repeatFirstThreeLetters(randomWord, 2));
+        System.out.println(repeatFirstThreeLetters(randomWord, 8));
 
         //Answer 15
         System.out.println(wordsInAStringCounter(randomWord));
 
         //Answer 16
-        int numberOfVowels = countVowels("Eugene");
+        int numberOfVowels = countVowels("Eugene lives here");
         System.out.println(numberOfVowels);
 
         //Answer 17
@@ -284,6 +341,12 @@ public class FirstChallenge {
         //Answer 20
         String fibonacciNumbers = createStringOfFibonnaciUpToMax(10);
         System.out.println(fibonacciNumbers);
+
+
+
+
+
+
 
 
 
